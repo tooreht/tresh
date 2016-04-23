@@ -1,0 +1,189 @@
+
+
+[Kurztext (Abstract) einf"ugen, falls gew"unscht]
+Dieses Dokument dient als Vorlage f"ur die Erstellung von Berichten nach den Richtlinien der BFH. Die
+Vorlage ist in LATEX erstellt und unterst"utzt das automatische Erstellen von diversen Verzeichnissen,
+Literaturangaben, Indexierung und Glossaren. Dieser kleine Text ist eine Zusammenfassung "uber das
+vorliegenden Dokument mit einer L"ange von 4 bis max. 8 Zeilen.
+Das Titelbild kann in den Zeilen 157/158 der Datei template.tex ein- oder ausgeschaltet werden.
+
+Studiengang: [z.B.Elektro- und Kommunikationstechnik]
+Autoren: [Test Peter, M"uster R"os"a]
+Betreuer: [Dr. Xxxx Xxxx, Dr. Yyyy Yyyy]
+Auftraggeber: [Wwwww AG]
+Experten: [Dr. Zzzz Zzzz]
+Datum: 01.02.2014
+
+Berner Fachhochschule | Haute 'ecole sp'ecialis'ee bernoise | Bern University of Applied Sciences
+
+Titel des Berichts
+Hier steht ein Untertitel
+Art der Arbeit (Semesterarbeit / Bachelorthesis / etc.)
+
+Versionen
+
+Version Datum Status Bemerkungen
+0.1 01.08.2013 Entwurf Lorem ipsum dolor sit amet
+0.2 21.08.2013 Entwurf Phasellus scelerisque
+0.3 02.09.2013 Entwurf Donec eget aliquam urna. Lorem ipsum dolor sit amet
+1.0 12.09.2013 Definitiv Lorem ipsum dolor sit ametPhasellus scelerisque, leo sed iaculis ornare
+1.1 04.11.2013 Korrektur Layout angepasst
+1.2 01.02.2014 Erg"anzung Kapitel 1.1 erweitert
+
+Management Summary
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus scelerisque, leo sed iaculis ornare, mi leo semper
+urna, ac elementum libero est at risus. Donec eget aliquam urna. Lorem ipsum dolor sit amet, consectetur adipiscing
+elit. Nunc fermentum nunc sollicitudin leo porttitor volutpat. Duis ac enim lectus, quis malesuada lectus. Aenean
+vestibulum suscipit justo, in suscipit augue venenatis a. Donec interdum nibh ligula. Aliquam vitae dui a odio cursus
+interdum quis vitae mi. Phasellus ornare tortor fringilla velit accumsan quis tincidunt magna eleifend. Praesent nisl
+nibh, cursus in mattis ac, ultrices ac nulla. Nulla ante urna, aliquet eu tempus ut, feugiat id nisl. Nunc sit amet
+mauris vitae turpis scelerisque mattis et sed metus. Aliquam interdum congue odio, sed semper elit ullamcorper
+vitae. Morbi orci elit, feugiat vel hendrerit nec, sollicitudin non massa.
+
+Titel des Berichts, Version 1.2, 01.02.2014 i
+
+Inhaltsverzeichnis
+Management Summary i
+1. Syntax Summary 1
+
+1.1. Markdown Syntax ("Uberschrift Level 2) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+1.2. Referenzen . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+
+Selbst"andigkeitserkl"arung 3
+Glossar 5
+Literaturverzeichnis 7
+Abbildungsverzeichnis 9
+Tabellenverzeichnis 11
+Stichwortverzeichnis 13
+A. Beliebiger Anhang 15
+
+Umfeld . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+
+Titel des Berichts, Version 1.2, 01.02.2014 iiiiv Titel des Berichts, Version 1.2, 01.02.2014
+
+1. Syntax Summary
+1.1. Markdown Syntax ( "Uberschrift Level 2)
+Fett, kursiv
+
+1. Nummerierte Liste
+2. usw.
+
+* Punkt-Liste
+
+* usw.
+
+Dies ist ein Zitat.
+Zeile mit Inline Code.
+
+Dies ist ein
+Code Block.
+
+1.2. Referenzen
+Link zu Kapitel Syntax Summary oder "Uberschrift Referenzen
+Fussnote1
+Zitieren: Latex-Einf"uhrung[1].
+Unsichtbar zitieren (erscheint im Verzeichnis):
+Siehe Abbildung 1.2
+Siehe Kapitel Syntax Summary auf Seite 1
+
+1.2.1. Bilder ( "Uberschrift Level 3)
+
+Einfaches Bild (Inline):
+Bild mit Referenz: Abbildung 1.1.
+
+Abbildung 1.1.: BFH Logo
+1Inlines notes are easier to write, since you don't have to pick an identifier and move down to type the note.
+
+Titel des Berichts, Version 1.2, 01.02.2014 1
+
+Latex-Bilder wie Abbildung 1.2 erlaubt mehr Einstellungs-M"oglichkeiten.
+
+Abbildung 1.2.: Das Logo
+1.2.2. Tabellen
+
+Tabelle 1.1.: Beispieltabelle mit den Legende
+Editor Plugin Kommentar
+Atom.io markdown-table-formatter formatiert beim Speichern (CMD-S)
+Sublime Text Table Edittor formatiert mit Taste TAB
+
+Oder eine Latex-Tabelle:
+
+Paket Funktion
+Internet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit
+
+amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante
+hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet
+vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur.
+
+Hello Lorem ipsum dolor sit amet.
+
+Tabelle 1.2.: Pakete
+
+1.2.3. Latex Funktionen
+Glossar Wort verwenden (Abk"urzung): Stichwortverzeichnis
+F"ur Stichwortverzeichnis indexieren:
+Math Formel 1.1:
+
+N (x | u, \Sigma ) = 1(2ss)D/2 1|\Sigma |(1/2) exp `- 12 (x - u)T \Sigma -1(x - u)' (1.1)
+
+2 Titel des Berichts, Version 1.2, 01.02.2014
+
+Selbst"andigkeitserkl"arung
+Ich/wir best"atige/n, dass ich/wir die vorliegende Arbeit selbstst"andig und ohne Benutzung anderer als der im
+Literaturverzeichnis angegebenen Quellen und Hilfsmittel angefertigt habe/n. S"amtliche Textstellen, die nicht von
+mir/uns stammen, sind als Zitate gekennzeichnet und mit dem genauen Hinweis auf ihre Herkunft versehen.
+
+Ort, Datum: [Biel/Burgdorf], 01.02.2014
+Namen Vornamen: [Test Peter] [M"uster R"os"a]
+
+Unterschriften: ...................................... ......................................
+
+Titel des Berichts, Version 1.2, 01.02.2014 34 Titel des Berichts, Version 1.2, 01.02.2014
+
+Glossar
+Stichwortverzeichnis Verzeichnis mit Stichworten aus dem Text.
+
+Titel des Berichts, Version 1.2, 01.02.2014 56 Titel des Berichts, Version 1.2, 01.02.2014
+Literaturverzeichnis
+[1] M. J"urgens, "Latex - eine Einf"uhrung und ein bisschen mehr..." 2000. [Online]. Available: http:
+
+//www.fernuni-hagen.de/zmi/katalog/A026.shtml
+
+[2] B. Raichle, "Einf"uhrung in die BibTeX-Programmierung," 2002. [Online]. Available: http://www.dante.de/
+
+dante/events/dante2002/handouts/raichle-bibtexprog.pdf
+
+Titel des Berichts, Version 1.2, 01.02.2014 78 Titel des Berichts, Version 1.2, 01.02.2014
+
+Abbildungsverzeichnis
+
+1.1. BFH Logo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+1.2. Das Logo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+
+Titel des Berichts, Version 1.2, 01.02.2014 910 Titel des Berichts, Version 1.2, 01.02.2014
+Tabellenverzeichnis
+
+1.1. Beispieltabelle mit den Legende . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+1.2. Pakete . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+
+Titel des Berichts, Version 1.2, 01.02.2014 1112 Titel des Berichts, Version 1.2, 01.02.2014
+Stichwortverzeichnis
+cmbright, 2
+glossaries, 2
+Latex, 2
+
+Titel des Berichts, Version 1.2, 01.02.2014 1314 Titel des Berichts, Version 1.2, 01.02.2014
+
+A. Beliebiger Anhang
+Phasellus eget velit massa, sed faucibus nisi. Etiam tincidunt libero viverra lorem bibendum ut rutrum nisi volutpat.
+Donec non quam vitae lacus egestas suscipit at eu nisi. Maecenas non orci risus, at egestas tellus. Vivamus quis
+est pretium mauris fermentum consectetur. Cras non dolor vitae nulla molestie facilisis. Aliquam euismod nisl eget
+risus pretium non suscipit nulla feugiat. Nam in tortor sapien.
+
+Umfeld
+Nam lectus nibh, laoreet eu ultrices nec, consequat nec sem. Nulla leo turpis, suscipit in vulputate a, dapibus
+molestie quam. Vestibulum pretium, purus sed suscipit tempus, turpis purus fermentum diam, id cursus enim mi a
+tortor. Proin imperdiet varius pellentesque. Nam congue, enim sit amet iaculis venenatis, dui neque ornare purus,
+laoreet porttitor nunc justo vel velit. Suspendisse potenti. Nulla facilisi.
+
+Titel des Berichts, Version 1.2, 01.02.2014 15

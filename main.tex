@@ -1,0 +1,114 @@
+%
+% Main document
+% ===========================================================================
+% This is part of the document "Project documentation template".
+% Authors: brd3, kaa1
+%
+
+%---------------------------------------------------------------------------
+\documentclass{bfh_template}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shadows}
+\usepackage{pgf-umlsd}
+
+%---------------------------------------------------------------------------
+%  Read title, version number and date of the paper from the file:
+%  title_version_def.tex
+\input{lead/title_version_def}
+
+%---------------------------------------------------------------------------
+\begin{document}                        % Start Document
+
+
+%---------------------------------------------------------------------------
+% Title Page and Abstract
+%---------------------------------------------------------------------------
+%\include{lead/titelseite_ohne_bild}	% activate for Titelseite ohne Bild
+\include{lead/frontpage}				% activate for Titelseite mit Bild
+\include{lead/versions}
+
+\cleardoubleemptypage
+%\setcounter{page}{1}
+
+\cleardoublepage
+\phantomsection
+% \include{lead/summary.md}
+\include{lead/summary}
+\cleardoubleemptypage
+
+%---------------------------------------------------------------------------
+% Table of contents
+%---------------------------------------------------------------------------
+\tableofcontents
+
+%---------------------------------------------------------------------------
+% Main part
+%---------------------------------------------------------------------------
+\cleardoublepage
+\pagenumbering{arabic}
+\include{chapters/demo.md}
+
+%---------------------------------------------------------------------------
+% Statement
+%---------------------------------------------------------------------------
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Selbständigkeitserklärung}
+\include{lead/statement}
+
+%---------------------------------------------------------------------------
+% Glossary
+%---------------------------------------------------------------------------
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Glossar}
+% \renewcommand{\glossaryname}{Glossar}
+\printglossary
+
+%---------------------------------------------------------------------------
+% Bibliography
+%---------------------------------------------------------------------------
+\cleardoublepage
+\phantomsection
+\nocite{*}
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\bibliographystyle{IEEEtranS}
+\bibliography{references/bibliography}{}
+
+%---------------------------------------------------------------------------
+% Listings
+%---------------------------------------------------------------------------
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\listoffigures
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+\listoftables
+
+%---------------------------------------------------------------------------
+% Index
+%---------------------------------------------------------------------------
+%\cleardoublepage
+%\phantomsection
+%\addcontentsline{toc}{chapter}{Stichwortverzeichnis}
+%\renewcommand{\indexname}{Stichwortverzeichnis}
+%\printindex
+
+%---------------------------------------------------------------------------
+% Appendix
+%---------------------------------------------------------------------------
+\appendix
+\settocdepth{section}
+\include{appendix/example.md}
+
+
+ % \includepdf[pages={-}]{../raspi/smoje/doc/latex/refman.pdf}
+ % \clearpage
+ % \addcontentsline{toc}{chapter}{Doxygen Smoje Code}
+ % \includepdf[pages={-}]{appendix/smojeCodedoc.pdf}
+
+%---------------------------------------------------------------------------
+\end{document}

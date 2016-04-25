@@ -1,0 +1,28 @@
+{
+  "name": "tresh-siot-gateway",
+  "version": "1.0.0",
+  "description": "IoT gateway to connect the Tresh sensors to the siot.net platform.",
+  "main": "index.js",
+  "dependencies": {
+    "list-selector-cli": "0.0.3",
+    "serialport": "^3.0.0",
+    "siot.net-nodejs-api": "^1.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tresh",
+    "trash",
+    "mesh",
+    "lora",
+    "siot",
+    "mqtt",
+    "iot",
+    "sensor",
+    "actor"
+  ],
+  "author": "Marc Zimmermann",
+  "license": "MIT"
+}

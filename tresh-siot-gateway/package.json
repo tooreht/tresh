@@ -4,9 +4,10 @@
   "description": "IoT gateway to connect the Tresh sensors to the siot.net platform.",
   "main": "index.js",
   "dependencies": {
+    "async": "^2.0.0-rc.5",
     "list-selector-cli": "0.0.3",
-    "serialport": "^3.0.0",
-    "siot.net-nodejs-api": "^1.0.3"
+    "serialport": "^3.1.2",
+    "siot.net-nodejs-api": "^1.0.5"
   },
   "devDependencies": {},
   "scripts": {

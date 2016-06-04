@@ -21,10 +21,9 @@
  */
 
 #include <WaspSX1272.h>
-#include <WaspFrame.h>
 
 // SX1272
-uint8_t node_address = 12; // address of this node
+uint8_t node_address = 10; // address of this node
 uint8_t rx_address = 2; // define the destination address to send packets
 
 int8_t e; // status variable
@@ -39,7 +38,7 @@ void setup() {
    PWR.setSensorPower(SENS_5V, SENS_ON);
    delay(200);
     
-   USB.println(F("Setting LORA configuration:")); 
+   USB.println(F("Setting LORA configuration")); 
 
   sx1272.ON();   // Init sx1272 module
   e = sx1272.setChannel(CH_11_868);  // Select frequency channel
@@ -58,26 +57,27 @@ void setup() {
 
 void loop() {
   long duration;
-  uint16_t dist = 0;  
+  uint16_t dist = 0; // Distance
   int distMin = 0;
   int distMax = 0;
   int distCount = 0;
   int distMinCnt = 0;
   int distMaxCnt = 0;
   
-  uint16_t batt=0;
+  uint16_t batt=0; // Battery
   int battMin = 0;
   int battMax = 0; 
   int battCount = 0;
   int battMinCnt = 0;
   int battMaxCnt = 0;
 
-  uint16_t temp = 0;
+  uint16_t temp = 0; // Temperature
 
   int distance[10];
   int battery[10];
   
-   for (int i=0; i <= 9; i++){       
+  USB.println("Measuring");
+  for (int i=0; i <= 9; i++){       
       // initiate measurement
       digitalWrite(DIGITAL7, LOW);
       delayMicroseconds(10);
@@ -168,7 +168,6 @@ void loop() {
         
     char res[48];
     sprintf(res, "\"distance\": %d, \"battery\": %d, \"temp\": %d", dist, batt, temp);
-    USB.print(RTC.getTemperature());
   
     USB.printf(res);
     USB.println();
@@ -269,13 +268,28 @@ void loop() {
     USB.println(F("Packet sent OK"));     
   }
   else 
-  {
+  { 
+    if(e == 9) //Ack lost even with retries -> wait random time and retry ONCE
+    {
+      USB.print("Failed to send, retrying after ");
+      uint16_t wait = (dist * abs(random())) % 10000 ;
+      USB.print(wait);
+      USB.println("ms");
+      delay(wait);
+      e = sx1272.sendPacketTimeoutACKRetries( rx_address, bts, 7);
+      if(e == 0) {
+       USB.println("Sending now successfull");
+      } else {
+       USB.println("Sending failed again, giving up"); 
+      }
+    } else {
     USB.print(F("Error sending the packet."));  
     USB.print(F("state: "));
     USB.println(e, DEC);
+    }
   }
 
-  USB.println("Going to sleep for 10s");
+  USB.println("Going to sleep for 20s");
   USB.OFF();
   sx1272.OFF();
   PWR.setSensorPower(SENS_5V, SENS_OFF);

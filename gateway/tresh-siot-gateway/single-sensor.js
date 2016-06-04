@@ -28,10 +28,34 @@ var battery = new siot.sensor({
     valueType: "int",
 });
 
+var temperature = new siot.sensor({
+    uuid: "fa6c37d9-a293-443c-b796-79db6c1f3021",
+	name: "temperature",
+	valueType: "int"
+});
+
+var snr = new siot.sensor({
+    uuid: "adbc6409-c727-4c07-be6e-39847b475344",
+	name: "snr",
+	valueType: "int"
+});
+
+var rssi = new siot.sensor({
+    uuid: "0b00846a-2724-456d-914b-22ad48880819",
+	name: "rssi",
+	valueType: "int"
+});
+
 async.series([ function(done) {
     gateway.registerDevice(distance, done);
 }, function(done) {
     gateway.registerDevice(battery, done);
+}, function(done) {
+    gateway.registerDevice(temperature, done);
+}, function(done) {
+    gateway.registerDevice(snr, done);
+}, function(done) {
+    gateway.registerDevice(rssi, done);
 }, function(done) {
     gateway.connect(done);
 }, function(done) {
@@ -82,6 +106,9 @@ function startSerial(selection, done) {
         	obj = JSON.parse(data)
         	distance.sendSensorData(obj.distance, done);
             battery.sendSensorData(obj.battery, done);
+			temperature.sendSensorData(obj.temp, done);
+			snr.sendSensorData(obj.SNR, done);
+			rssi.sendSensorData(obj.RSSI, done);
         } catch (e) {
             console.log(e);
         }

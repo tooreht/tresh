@@ -2,7 +2,7 @@
   "name": "tresh-siot-gateway",
   "version": "1.0.0",
   "description": "IoT gateway to connect the Tresh sensors to the siot.net platform.",
-  "main": "index.js",
+  "main": "single-sensor.js",
   "dependencies": {
     "async": "^2.0.0-rc.5",
     "list-selector-cli": "0.0.3",

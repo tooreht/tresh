@@ -83,7 +83,7 @@ function startSerial(selection, done) {
         	distance.sendSensorData(obj.distance, done);
             battery.sendSensorData(obj.battery, done);
         } catch (e) {
-            console.log("not JSON");
+            console.log(e);
         }
     }
     function showPortClose() {

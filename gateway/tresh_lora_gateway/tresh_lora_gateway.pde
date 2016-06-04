@@ -29,7 +29,6 @@
      
 // Include this library to transmit with sx1272
 #include <WaspSX1272.h>
-#include <WaspFrame.h>
 
 // status variable
 int8_t e;
@@ -116,4 +115,5 @@ void loop()
    
   
 }
+
 

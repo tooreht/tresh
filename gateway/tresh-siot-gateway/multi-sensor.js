@@ -140,7 +140,13 @@ async.series([ function(done) {
 	}, function(done) {
     gateway.connect(done);
 }, function(done) {
-    chooseSerialPort(done);
+    portName = process.argv.length > 2 ? process.argv[2] : process.env.DEVNAME;
+    if (portName) {
+        selection = [portName];
+        startSerial(selection, null);
+    } else {
+        chooseSerialPort(done);
+    }
 } ], function(err) {
     if (err) return console.error(err);
     // actor.on("siot_data", function(message) {
@@ -158,7 +164,7 @@ function chooseSerialPort(done) {
             console.log(port.manufacturer);
             serialports.push(port.comName);
         });
-        console.log(serialports);
+        // console.log(serialports);
         serialportChoice = new cliselect(serialports);
         serialportPromise = serialportChoice.prompt();
         serialportPromise.done(startSerial, done);
@@ -166,7 +172,7 @@ function chooseSerialPort(done) {
 }
 
 function startSerial(selection, done) {
-    console.log(selection);
+    // console.log(selection);
     portName = selection[0];
     var treshPort = new serialport.SerialPort(portName, {
         baudRate: 115200,
@@ -181,8 +187,6 @@ function startSerial(selection, done) {
         console.log("port open. Data rate: " + treshPort.options.baudRate);
     }
     function sendSerialData(data) {
-        console.log(typeof data);
-        console.log(data);
         try {
         	obj = JSON.parse(data)
 			switch (obj.address) {
@@ -210,6 +214,9 @@ function startSerial(selection, done) {
 			}
         } catch (e) {
             console.log(e);
+        } finally {
+           // console.log(typeof data);
+           console.log(data);
         }
     }
     function showPortClose() {
@@ -219,3 +226,4 @@ function startSerial(selection, done) {
         console.log("Serial port error: " + error);
     }
 }
+

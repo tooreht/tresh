@@ -131,9 +131,9 @@
 %
 % for futher informations go to http://ewus.de/tipp-1029.html
 %---------------------------------------------------------------------------
-\usepackage[nonumberlist]{glossaries}
+\usepackage[xindy]{glossaries} 
+\input{references/glossary}
 \makeglossaries
-\include{references/glossary}
 %---------------------------------------------------------------------------
 
 

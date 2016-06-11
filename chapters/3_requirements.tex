@@ -1,1 +1,16 @@
-\chapter{Anforderungen an IoT Sensor Knoten}
+\chapter{Anforderungen an \gls{iotk}}
+
+Durch das Analysieren von Anwendungsfällen im vorherigen Kapitel, haben sich wichtige Anforderungen an \gls{iotk} herauskristallisiert. Nachfolgend werden diese genauer beschrieben.
+
+\section{Energieverbrauch}
+
+Ein kritischer Faktor für jeden \gls{iotk} ist der Energieverbrauch. Dieser ist von verschiedenen Faktoren wie Standort, Art und Anzahl Sensoren und Aktoren, Messungsintervallen und Operationen, verwendeter Hardwarekomponenten und verfügbarem Platz abhänging.\\
+Ein idealer Standort eines Knotens hätte eine bereits vorhandene, stetige Energiequelle. Doch dies ist in der Praxis selten der Fall, da die Knoten oft an Orten mit keiner oder nur begrenzter Energieversorgung eingesetzt werden. Daher wird Platz für einen Energiespeicher benötigt. Optimal ist es, am Standort Energie zu gewinnen, beispielsweise mit Solarzellen. Der Energiespeicher ist somit ein Puffer, da die Gewinnung nicht konstant ist. \gls{iotk} werden oft in bestehende Systeme integriert, weshalb die Platzverhältnisse stark begrenzt sind. Diese knappen Verhältnisse schränken die Grösse des Energiespeichers und auch die Möglichkeiten der Energiegewinnung ein. Damit wird jedes Miliampere zu einem kostbaren Gut und ein haushälterischer Umgang damit verlängert die Lebensdauer und vermindert Wartungseinsätze.\\
+Ein effizientes Energiemanagement kann mit dem Einsatz von auf den Anwendugsfall reduzierter Hardware, die es erlaubt in einen Energiesparmodus zu wechseln und dafür optimierter Software sichergestellt werden.
+
+\section{Intelligente Messungen}
+
+Um die gewünschten Informationen für die Anwendung mithilfe eines \glspl{iotk} zu ermitteln, sind auf den Anwendungsfall zugeschnittene, intelligente Messungen sehr wertvoll. Zwar könnte man einen Sensor so oft wie möglich auslesen und alle diese Werte über das Netzwerk in die Cloud speichern. Doch meistens ist dies gar nicht notwendig. Es erhöht nur unnötig den Energieverbrauch und die Auslastung des Netzwerks.
+
+Je nach Anwendungsfall sind unterschiedliche Messarten sinnvoll. Diese können grundsätzlich in zwei Klassen aufgeteilt werden: Messungen können entweder durch einen Trigger oder zu definierten Zeitpunkten ausgelöst werden. Das Ereignis basierte Auslösen durch einen Trigger ist zum Beispiel beim Herausfinden ob eine Tür offen oder geschlossen ist sinnvoll. Nur die Zustansänderung ist von Interesse, nicht aber eine dauernde Überwachung. Bei 
+

@@ -2,15 +2,78 @@
 
 Durch das Analysieren von Anwendungsfällen im vorherigen Kapitel, haben sich wichtige Anforderungen an \gls{iotk} herauskristallisiert. Nachfolgend werden diese genauer beschrieben.
 
+\section{Reichweite}
+
+Je nach Anwendungsfall gibt es unterschiedliche Anforderungen an die Reichweite eines \gls{iotk} zum Senden und Empfangen von Daten über eine drahtlose Funkverbindung. Bei kurzen Distanzen und vorhandener Energieversorgung genügen oft konventionelle Technologien wie \gls{wifi} oder \gls{bluetooth}. Sobald aber die Distanzen zwischen den \gls{iotk} grösser werden und zusätzlich noch Hindernisse wie Gebäude oder Hügel überwunden werden müssen, werden andere Technologien benötigt. Die Funkmodulationstechnik \gls{lora} erlaubt das Übertragen von Daten über mehrere Kilometer, doch nicht ohne dabei einen Kompromiss einzugehen. Grundsätzlich gilt: Je tiefer die Übertragungsfrequenz desto grösser ist die Reichweite und umso kleiner ist der Datendurchsatz. Das heisst bei \gls{lora} kann eine Vergrösserung der Reichweite auf Kosten des Datendurchsatzes erreicht werden. Die physikalischen Gesetze zwingen zu einem Abwägen zwischen Reichweite und Datendurchsatz bei der Wahl der geeigneten Funk-Technologie für ein Sensor/Aktor Netzwerk. Diese Tatsache hat noch weitere Implikationen auf andere Anforderungen wie Verwaltbarkeit und Datendurchsatz.
+
+\section{Datendurchsatz}
+
+Je nach dem wie viele Daten in einem Sensor/Aktor Netzwerk anfallen, wird ein unterschiedlicher Datendurchsatz benötigt. Wie im oberen Abschnitt beschrieben beeinflusst der Datendurchsatz die mögliche Reichweite und somit die Wahl der geeigneten Technologien. Über eine \gls{wifi} 802.11n Verbindung können bis zu 300Mbs übertragen werden, d.h. Bild- , Audio- und Videodaten können ohne Probleme in kurzer Zeit übertragen werden. Sogar das Streaming von hochauflösenden Videodaten ist möglich. Im Gegensatz dazu ist es in einem \gls{lora}-Netzwerk äusserst ineffizient Bilddaten zu übertragen und undenkbar Videostreaming zu betreiben, denn die maximale Datenrate von \gls{lora} (Mode 10) beträgt 38.4kbps \autocite[2]{lora:FAQ}.\\
+Ein weiterer Faktor der den Datendurchsatz beeinflusst ist die Anzahl Teilnehmer in einem Netz die gleichzeitig Daten versenden. Wenn nur ein einzelner Knoten Daten versendet, kann er die volle Datenrate ausnutzen. Mit jedem weiteren Teilnehmer der dazu kommt, muss die Datenrate geteilt werden.\\
+Bei der Wahl eines \gls{iotk} ist der Datendurchsatz also ein wichtiges Entscheidungskriterium. Je nach Anwendungsfall muss zischen Datendurchsatz, Reichweite und Anzahl Teilnehmer im Netzwerk abgewogen werden.
+
+\section{Zuverlässigkeit}
+
+Eine weitere wichtige Anforderung an einen \gls{iotk} ist seine Zuverlässigkeit. Grundsätzlich ist hiermit der Determinismus des Systems gemeint, also ob sich das System immer gleich verhält und dieses Verhalten klar bestimmt ist. Konkret könnte dies folgende Kriterien umfassen:
+\begin{itemize}  
+  \item zuverlässige Messresultate der Sensoren
+  \item zuverlässige Funktion der Aktoren
+  \item zuverlässige Übertragung der Daten
+  \item berechenbare Übertragungszeit im Netzwerk 
+  \item berechenbare Endladekurve der Energiespeicher
+\end{itemize}
+
+Mit einer hohen Zuverlässigkeit kann ein System optimal operieren, insbesondere über einen längeren Zeitraum. Der Wartungsaufwand kann minimiert und genauer geplant werden. Da durch den deterministischen Charakter einige Parameter des Systems berechenbar werden, lassen sich daraus leicht einige Annahmen ableiten.
+
+\section{Sicherheit}
+
+Die Frage nach der Sicherheit eines Systems ist ein Dauerbrenner in der Informationstechnologie. So auch im \acrshort{iot}-Sektor. Je nach dem wie sensibel die Daten sind, die mit einem \gls{iotk} gemessen und übertragen werden, müssen andere Sicherheitsmassnahmen getroffen werden. Die \gls{iotk} sollten eine eingebaute Hardwarebeschleunigung für kryptographische Operationen unterstützten, wie z.B. AES-Beschleunigung. Für hochsensible Daten ist die Möglichkeit der End-zu-End Verschlüsselung vom Sensor bis zum Endnutzer nötig, was die Komplexität des Systems massiv erhöhen kann. Auch hier muss anhand der Anforderungen der Anwendung zwischen mehr Sicherheit oder mehr Akkulaufzeit (da keine zusätzlichen Chips für die Hardwarebeschleunigung benötigt werden) und Flexibilität abgewogen werden.
+
+\section{Topologie}
+
+Je nach Anwendungsgebiet und verwendeter Technologie sind unterschiedliche Netzwerk Topologien sinvoll. Die einfachste Topologie ist eine Punkt-zu-Punkt Verbindung. Dabei sind genau zwei Knoten miteinander verbunden. Während diese Topologie sehr einfach ist, ist sie gleichzeitig sehr eingeschränkt, da nur zwei Teilnehmer miteinander kommunizieren können. In einem Mesh Netzwerk leiten die Endknoten Daten von anderen Knoten weiter, um die Reichweite und die Anzahl Teilnehmer der Netzwerk-Zelle zu erhöhen. Dafür erhöht sich aber auch die Komplexität und Netzwerkkapazität. In einem Stern Netzwerk sind mehrere Teilnehmer mit einem zentralen Gateway verbunden. Die Teilnehmer können über dieses Gateway mit den anderen Teilnehmern kommunizieren. So kann viel Logik von den Knoten weg in das Gateway verschoben werden, was im Falle der \glspl{iotk} ein einfacheres Design erlaubt. Da es mehr \gls{iotk} als Gateways gibt, hat dies auch einen kosten Nutzen.
+
 \section{Energieverbrauch}
 
-Ein kritischer Faktor für jeden \gls{iotk} ist der Energieverbrauch. Dieser ist von verschiedenen Faktoren wie Standort, Art und Anzahl Sensoren und Aktoren, Messungsintervallen und Operationen, verwendeter Hardwarekomponenten und verfügbarem Platz abhänging.\\
+Ein kritischer Faktor für jeden \gls{iotk} ist der Energieverbrauch. Dieser ist von verschiedenen Faktoren wie Standort, Art und Anzahl Sensoren und Aktoren, Messintervallen und Operationen, verwendeter Hardwarekomponenten und verfügbarem Platz abhänging.\\
 Ein idealer Standort eines Knotens hätte eine bereits vorhandene, stetige Energiequelle. Doch dies ist in der Praxis selten der Fall, da die Knoten oft an Orten mit keiner oder nur begrenzter Energieversorgung eingesetzt werden. Daher wird Platz für einen Energiespeicher benötigt. Optimal ist es, am Standort Energie zu gewinnen, beispielsweise mit Solarzellen. Der Energiespeicher ist somit ein Puffer, da die Gewinnung nicht konstant ist. \gls{iotk} werden oft in bestehende Systeme integriert, weshalb die Platzverhältnisse stark begrenzt sind. Diese knappen Verhältnisse schränken die Grösse des Energiespeichers und auch die Möglichkeiten der Energiegewinnung ein. Damit wird jedes Miliampere zu einem kostbaren Gut und ein haushälterischer Umgang damit verlängert die Lebensdauer und vermindert Wartungseinsätze.\\
-Ein effizientes Energiemanagement kann mit dem Einsatz von auf den Anwendugsfall reduzierter Hardware, die es erlaubt in einen Energiesparmodus zu wechseln und dafür optimierter Software sichergestellt werden.
+Ein effizientes Energiemanagement kann mit dem Einsatz von auf den Anwendungsfall reduzierter Hardware, die es erlaubt in einen Energiesparmodus zu wechseln und dafür optimierter Software sichergestellt werden.
 
-\section{Intelligente Messungen}
+\subsection{Intelligente Messungen}
 
-Um die gewünschten Informationen für die Anwendung mithilfe eines \glspl{iotk} zu ermitteln, sind auf den Anwendungsfall zugeschnittene, intelligente Messungen sehr wertvoll. Zwar könnte man einen Sensor so oft wie möglich auslesen und alle diese Werte über das Netzwerk in die Cloud speichern. Doch meistens ist dies gar nicht notwendig. Es erhöht nur unnötig den Energieverbrauch und die Auslastung des Netzwerks.
+Um die gewünschten Informationen für die Anwendung mithilfe eines \glspl{iotk} zu ermitteln, sind auf den Anwendungsfall zugeschnittene, intelligente Messungen sehr wertvoll. Zwar könnte man einen Sensor so oft wie möglich auslesen und alle diese Werte über das Netzwerk in die Cloud speichern. Doch meistens ist dies gar nicht notwendig. Es erhöht nur unnötig den Energieverbrauch und die Auslastung des Netzwerks.\\
+Je nach Anwendungsfall sind unterschiedliche Messarten sinnvoll. Diese können grundsätzlich in zwei Klassen aufgeteilt werden: Messungen können entweder durch einen Trigger oder zu definierten Zeitpunkten ausgelöst werden. Das ereignisbasierte Auslösen durch einen Trigger ist zum Beispiel beim Herausfinden ob eine Tür offen oder geschlossen ist sinnvoll. Nur die Zustandsänderung ist von Interesse, nicht aber eine dauernde Überwachung. Bei einer Anwendung wo es nicht möglich ist einen zuverlässiges Ereignis zu triggern, muss mit zeitzyklischen Messungen gearbeitet werden. Dabei muss bei der Bestimmung der Messintervalle zwischen Genauigkeit und Energieverbrauch abgewogen werden. Zusätzlich können Knoten während Zeiten, wo keine Messungen benötigt werden in den Energiesparmodus wechseln oder ganz abgeschaltet werden. Ein Beispiel dafür sind Alarmanlagen, sie müssen nur aktiv sein wenn kein Personal anwesend ist.
 
-Je nach Anwendungsfall sind unterschiedliche Messarten sinnvoll. Diese können grundsätzlich in zwei Klassen aufgeteilt werden: Messungen können entweder durch einen Trigger oder zu definierten Zeitpunkten ausgelöst werden. Das Ereignis basierte Auslösen durch einen Trigger ist zum Beispiel beim Herausfinden ob eine Tür offen oder geschlossen ist sinnvoll. Nur die Zustansänderung ist von Interesse, nicht aber eine dauernde Überwachung. Bei 
+\section{Verwaltbarkeit}
 
+Wenn einmal ein Netz von \gls{iotk} aufgebaut ist, stellt sich schnell einmal die Frage wie Änderungen an alle Knoten propagiert werden können. Je nach Topologie, Datendurchsatz und Intelligenz der Knoten bieten sich unterschiedliche Möglichkeiten an. Wir haben dazu vier Stufen definiert:
+
+\begin{enumerate}
+  \item nur lokaler Zugriff
+  \item Remote Reset des \gls{iotk}
+  \item Remote Konfiguration einzelner Parameter des \gls{iotk}
+  \item Remote \acrfull{ota}-Update 
+\end{enumerate}
+
+\section{Benutzerfreundlichkeit}
+
+Je nachdem von welcher Zielgruppe schlussendlich die \glspl{iotk} verwendet werden, verändern sich auch die Anforderungen an die Benutzerfreundlichkeit der Knoten. Wenn z.B. Parksensoren vom Abwart einer Parkhausanlage gewartet werden sollen und er dazu eine Funktionskontrolle durchführen muss, könnten die vier Stufen wie folgt aussehen: 
+
+\begin{enumerate}  
+  \item Der Abwart muss bei jedem \gls{iotk} vorbeigehen und eine Funktionskontrolle durchführen
+  \item Remote Konfiguration einzelner Parameter des \gls{iotk}
+  \item Remote \acrfull{ota}-Update 
+\end{enumerate}
+
+\section{Kosten}
+
+
+\section{Formfaktor}
+
+Je nach Anwendung, besonders wenn \gls{iotk} in ein bestehendes System integriert werden, ist oft nur begrenzt Platz vorhanden. Deshalb kann ein passender Formfaktor entscheidend sein.
+
+\section{Sensor/Aktor Schnittstellen}
+
+Die zentralen Elemente jeder \gls{iot} Applikation sind neben dem Netzwerk die Sensoren und Aktoren. 
+
+Idee RFID enabled LoRa

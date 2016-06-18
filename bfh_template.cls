@@ -130,11 +130,20 @@
 %  - Add this [ -s "%tm.ist" -t "%tm.glg" -o "%tm.gls" "%tm.glo" ] in the field "Argumente"
 %
 % for futher informations go to http://ewus.de/tipp-1029.html
+%
+% xindy usage from https://www.overleaf.com/5448147dbkcpd
 %---------------------------------------------------------------------------
 \usepackage[xindy]{glossaries} 
 \input{references/glossary}
 \makeglossaries
 %---------------------------------------------------------------------------
+
+%---------------------------------------------------------------------------
+% Bibliography (https://www.overleaf.com/5449343pfczgx)
+%---------------------------------------------------------------------------
+% for back reference in bibliography
+\usepackage[style=alphabetic,citestyle=authortitle,backend=biber,backref=true]{biblatex}
+\addbibresource{references/bibliography.bib}
 
 
 % Set up header and footer
@@ -161,8 +170,6 @@
 \setcounter{tocdepth}{2}
 
 \pagenumbering{roman}
-
-\newcommand{\autocite}{\cite}
 
 \usepackage[para,online,flushleft]{threeparttable}
 

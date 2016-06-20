@@ -4,7 +4,7 @@ Durch das Analysieren von Anwendungsfällen im vorherigen Kapitel, haben sich wi
 
 \section{Reichweite}
 
-Je nach Anwendungsfall gibt es unterschiedliche Anforderungen an die Reichweite eines \gls{iotk} zum Senden und Empfangen von Daten über eine drahtlose Funkverbindung. Bei kurzen Distanzen und vorhandener Energieversorgung genügen oft konventionelle Technologien wie \gls{wifi} oder \gls{bluetooth}. Sobald aber die Distanzen zwischen den \gls{iotk} grösser werden und zusätzlich noch Hindernisse wie Gebäude oder Hügel überwunden werden müssen, werden andere Technologien benötigt. Die Funkmodulationstechnik \gls{lora} erlaubt das Übertragen von Daten über mehrere Kilometer, doch nicht ohne dabei einen Kompromiss einzugehen. Grundsätzlich gilt: Je tiefer die Übertragungsfrequenz desto grösser ist die Reichweite und umso kleiner ist der Datendurchsatz. Das heisst bei \gls{lora} kann eine Vergrösserung der Reichweite auf Kosten des Datendurchsatzes erreicht werden. Die physikalischen Gesetze zwingen zu einem Abwägen zwischen Reichweite und Datendurchsatz bei der Wahl der geeigneten Funk-Technologie für ein Sensor/Aktor Netzwerk. Diese Tatsache hat noch weitere Implikationen auf andere Anforderungen wie Verwaltbarkeit und Datendurchsatz.
+Je nach Anwendungsfall gibt es unterschiedliche Anforderungen an die Reichweite eines \gls{iotk}. Die flexibelste Art Daten zu Senden und Empfangen ist über eine drahtlose Funkverbindung. Bei kurzen Distanzen und vorhandener Energieversorgung genügen oft konventionelle Technologien wie \gls{wifi} oder \gls{bluetooth}. Sobald aber die Distanzen zwischen den \gls{iotk} grösser werden und zusätzlich noch Hindernisse wie Gebäude oder Hügel überwunden werden müssen, werden andere Technologien benötigt. Die Funkmodulationstechnik \gls{lora} erlaubt das Übertragen von Daten über mehrere Kilometer, doch nicht ohne dabei einen Kompromiss einzugehen. Grundsätzlich gilt: Je tiefer die Übertragungsfrequenz desto grösser ist die Reichweite und umso kleiner ist der Datendurchsatz. Das heisst bei \gls{lora} kann eine Vergrösserung der Reichweite auf Kosten des Datendurchsatzes erreicht werden. Die physikalischen Gesetze zwingen zu einem Abwägen zwischen Reichweite und Datendurchsatz bei der Wahl der geeigneten Funk-Technologie für ein Sensor/Aktor Netzwerk. Diese Tatsache hat noch weitere Implikationen auf andere Anforderungen wie Verwaltbarkeit und Datendurchsatz.
 
 \section{Datendurchsatz}
 
@@ -31,7 +31,7 @@ Die Frage nach der Sicherheit eines Systems ist ein Dauerbrenner in der Informat
 
 \section{Topologie}
 
-Je nach Anwendungsgebiet und verwendeter Technologie sind unterschiedliche Netzwerk Topologien sinvoll. Die einfachste Topologie ist eine Punkt-zu-Punkt Verbindung. Dabei sind genau zwei Knoten miteinander verbunden. Während diese Topologie sehr einfach ist, ist sie gleichzeitig sehr eingeschränkt, da nur zwei Teilnehmer miteinander kommunizieren können. In einem Mesh Netzwerk leiten die Endknoten Daten von anderen Knoten weiter, um die Reichweite und die Anzahl Teilnehmer der Netzwerk-Zelle zu erhöhen. Dafür erhöht sich aber auch die Komplexität und Netzwerkkapazität. In einem Stern Netzwerk sind mehrere Teilnehmer mit einem zentralen Gateway verbunden. Die Teilnehmer können über dieses Gateway mit den anderen Teilnehmern kommunizieren. So kann viel Logik von den Knoten weg in das Gateway verschoben werden, was im Falle der \glspl{iotk} ein einfacheres Design erlaubt. Da es mehr \gls{iotk} als Gateways gibt, hat dies auch einen kosten Nutzen.
+Je nach Anwendungsgebiet und verwendeter Technologie sind unterschiedliche Netzwerk Topologien sinvoll. Die einfachste Topologie ist eine Punkt-zu-Punkt Verbindung. Dabei sind genau zwei Knoten miteinander verbunden. Während diese Topologie sehr einfach ist, ist sie gleichzeitig sehr eingeschränkt, da nur zwei Teilnehmer miteinander kommunizieren können. In einem Mesh Netzwerk leiten die Endknoten Daten von anderen Knoten weiter, um die Reichweite und die Anzahl Teilnehmer der Netzwerk-Zelle zu erhöhen. Dafür erhöht sich aber auch die Komplexität und Netzwerkkapazität. In einem Stern Netzwerk sind mehrere Teilnehmer mit einem zentralen Gateway verbunden. Die Teilnehmer können über dieses Gateway mit den anderen Teilnehmern kommunizieren. So kann viel Logik von den Knoten weg in das Gateway verschoben werden, was im Falle der \glspl{iotk} ein einfacheres Design erlaubt. Da es mehr \gls{iotk} als Gateways gibt, hat dies auch einen Kosten-Nutzen.
 
 \section{Energieverbrauch}
 
@@ -57,16 +57,29 @@ Wenn einmal ein Netz von \gls{iotk} aufgebaut ist, stellt sich schnell einmal di
 
 \section{Benutzerfreundlichkeit}
 
-Je nachdem von welcher Zielgruppe schlussendlich die \glspl{iotk} verwendet werden, verändern sich auch die Anforderungen an die Benutzerfreundlichkeit der Knoten. Wenn z.B. Parksensoren vom Abwart einer Parkhausanlage gewartet werden sollen und er dazu eine Funktionskontrolle durchführen muss, könnten die vier Stufen wie folgt aussehen: 
+Je nachdem von welcher Zielgruppe schlussendlich die \glspl{iotk} verwendet werden, verändern sich auch die Anforderungen an die Benutzerfreundlichkeit der Knoten. Nehmen wir an ein Parkhaus hat alle Parkfelder mit Parksensoren ausgestattet. Der Abwart des Parkhauses ist neu für die Wartung aller Parksensoren verantwortlich. Seine Hauptaufgabe ist eine regelmässige Funktionskontrolle der Sensoren. Das Softwareunternehmen, welches das \acrshort{iot}-System entwickelt und integriert hat, ist verpflichtet das System weiter zu verbessern und will daher möglichst viel Kontrolle über die \gls{iotk} haben. Daher will das Unternehmen die Software möglichst Remote verwalten und aktualisieren können.
 
+Die im vorderen Abschnitt erwähnten vier Stufen könnten wie folgt aussehen:
+
+\textbf{Funktionskontrolle der Sensoren}
 \begin{enumerate}  
-  \item Der Abwart muss bei jedem \gls{iotk} vorbeigehen und eine Funktionskontrolle durchführen
-  \item Remote Konfiguration einzelner Parameter des \gls{iotk}
-  \item Remote \acrfull{ota}-Update 
+  \item Der Abwart muss bei jedem \gls{iotk} vorbeigehen und eine Funktionskontrolle durchführen.
+  \item Der Abwart kann zumindest versuchen einen defekten \gls{iotk} zuerst über eine Smartphone App zurückzusetzen, bevor er vorbeigehen muss.
+  \item Der Abwart kann defekte \gls{iotk} über die Smartphone App identifizieren und gezielt reparieren.
+  \item Wie Stufe 3. 
+\end{enumerate}
+
+\textbf{Software aktualisieren}
+\begin{enumerate}  
+  \item Das Untenehmen muss einen Mitarbeiter vorbeischicken der bei jedem \gls{iotk} vorbeigeht und von Hand flasht oder den Abwart instruieren.
+  \item Wie Stufe 1.
+  \item Die Entwickler können grosse Teile der Funktionalität ändern, wenn sie möglichst viel Logik in die Gateways verlagern und auf den \gls{iotk} viele flexible Parameter definieren.
+  \item Die Entwickler können die gesamte Software Remote ändern.
 \end{enumerate}
 
 \section{Kosten}
 
+Ein entscheidender Faktor ist schlussendlich auch der Preis pro \gls{iotk}
 
 \section{Formfaktor}
 

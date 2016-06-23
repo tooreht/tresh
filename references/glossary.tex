@@ -1,11 +1,11 @@
 \newglossaryentry{BibTeX}{%
 	name={BibTeX},%
-    description={Programm zur Erstellung von Literaturangaben und -verzeichnissen in \TeX- oder \LaTeX-Dokumenten}}
+    description={Programm zur Erstellung von Literaturangaben und Verzeichnissen in \TeX- oder \LaTeX-Dokumenten}}
 
 \newglossaryentry{iotk}{%
 	name={IoT-Knoten},%
     plural={IoT-Knoten},
-    description={Komponente bestehend aus einem Microcontroller der  Sensoren und Aktoren steuert und die Daten über Schnittstellen zur Verfügung stellt}}
+    description={Komponente bestehend aus einem Microcontroller der Sensoren und Aktoren steuert und die Daten über Schnittstellen zur Verfügung stellt}}
     
 \newglossaryentry{iotg}{%
 	name={IoT-Gateway},%
@@ -22,10 +22,15 @@
     plural={ISM-Bänder},
     description={Als ISM-Bänder (Industrial, Scientific and Medical Band) werden Frequenzbereiche bezeichnet, die durch Hochfrequenz-Geräte in Industrie, Wissenschaft, Medizin, in häuslichen und ähnlichen Bereichen genutzt werden können. Entsprechende ISM-Geräte wie Mikrowellenherde und medizinische Geräte zur Kurzwellenbestrahlung benötigen dabei nur eine allgemeine Zulassung der Frequenzverwaltung, beispielsweise in Deutschland.}}
     
+\newglossaryentry{lpwan}{
+	name={LPWAN},
+    plural={LPWAN},
+    description={Low Power Wide Area Network (LPWAN oder LPN, deutsch: Niedrigenergieweitverkehrnetzwerk) beschreibt eine Klasse von Netzwerkprotokollen zur Verbindung von Niedrigenergiegeräten wie batteriebetriebene Sensoren mit einem Netzwerkserver. Das Protokoll ist so ausgelegt, dass eine große Reichweite und ein niedriger Energieverbrauch der Endgeräte bei niedrigen Betriebskosten erreicht werden können.}}
+
 \newglossaryentry{lora}{
 	name={LoRa},
     plural={LoRa},
-    description={LoRa (LongRange) ist eine proprietäre CSS modulations technologie verwendet für LPWAN/LoRaWAN patentiert von Semtech von der LoRa Allianz}}
+    description={LoRa (LongRange) ist eine proprietäre CSS Modulationstechnologie die für LPWAN/LoRaWAN Netzwerke verwendet wird. LoRa ist von der Firma Semtech von der LoRa Allianz zum Patent angemeldet}}
 
 \newglossaryentry{lorawan}{
 	name={LoRaWAN},
@@ -37,18 +42,49 @@
     plural={Push-Methoden},
     description={Die Push-Methode ist eine betriebswirtschaftlicher Begriff für eine Marketing-Strategie. Die Push-Methode entwickelt oder evaluiert zuerst eine neue Technologie. Mithilfe dieser Technologie wird danach nach Bedürfnissen gesucht, wo diese Technologie wirtschaftlich eingesetzt werden kann.}}
 
-\newglossaryentry{wifi}{
-	name={WiFi},
-    plural={LoRaWANs},
-    description={LoRaWAN (Long Range Wide Area Network) ist ein Low-Power-Wireless-Netzwerkprotokoll, das für die sichere bidirektionale Kommunikation im Internet der Dinge (IoT) entwickelt wurde. LoRaWAN basiert auf dem offenen Industrie-Standard LoRa und wird von der non-profit Organisation LoRa Alliance spezifiziert.}}
+\newglossaryentry{ieee802.11}{
+	name={IEEE 802.11},
+    plural={IEEE 802.11},
+    description={IEEE 802.11 (auch: Wireless LAN (WLAN), Wi-Fi) bezeichnet eine IEEE-Norm für Kommunikation in Funknetzwerken. Herausgeber ist das Institute of Electrical and Electronics Engineers (IEEE). Die erste Version des Standards wurde 1997 verabschiedet. Sie spezifiziert den Mediumszugriff (MAC-Layer) und die physische Schicht (vgl. OSI-Modell) für lokale Funknetzwerke.
+Für die physische Schicht sind im ursprünglichen Standard zwei Spreizspektrumverfahren (Übertragung per Radiowellen) und ein Verfahren zur Datenübertragung per Infrarotlicht spezifiziert, wobei eine Übertragungsrate von bis zu 2 Mbit/s (brutto) vorgesehen ist. Zur Datenübertragung per Radiowellen wird das lizenzfreie ISM-Band bei 2,4 GHz verwendet. Die Kommunikation zwischen zwei Teilnehmern kann direkt im so genannten Ad-hoc-Modus, im Infrastruktur-Modus mithilfe einer Basisstation (Access Point) oder als Meshnetzwerk erfolgen.}}
+
+\newglossaryentry{ieee802.15.4}{
+	name={IEEE 802.15.4},
+    plural={IEEE 802.15.4},
+    description={Der Standard IEEE 802.15.4 beschreibt ein Übertragungsprotokoll für Wireless Personal Area Networks (WPAN). Er definiert die untersten beiden Schichten des OSI-Modells, den Bitübertragungs- und den MAC-Layer. Höhere Protokollebenen mit Funktionen zum Routing und einer Anwendungsschnittstelle obliegen anderen Standards für Funknetze wie ZigBee. Wesentliche Entwicklungsziele für das Protokoll sind geringe Leistungsaufnahme für einen langen Betrieb über Batterieversorgung, kostengünstige Hardware, sichere Übertragung, Nutzung der lizenzfreien ISM-Bänder und Parallelbetrieb mit anderen Sendern auf diesen Frequenzen, insbesondere WLAN und Bluetooth. Durch diese Eigenschaften eignet sich der Standard IEEE 802.15.4 vor allem für drahtlose Sensornetze (WSN) und für direkt am Körper getragene Sensoren und Aktoren (WBAN, Wireless Body Area Network).}}
+
+\newglossaryentry{3gpp}{
+	name={3GPP},
+    plural={3GPP},
+    description={3rd Generation Partnership Project (3GPP) ist eine weltweite Kooperation von Standardisierungsgremien für die Standardisierung im Mobilfunk; konkret für UMTS, GERAN (GSM) und LTE. Die 3GPP wurde am 4. Dezember 1998 von fünf sogenannten Organizational Partners gegründet.}}
+
+\newglossaryentry{lte}{
+	name={LTE},
+    plural={LTE},
+    description={Long Term Evolution (kurz LTE, auch 3.9G) ist eine Bezeichnung für den Mobilfunkstandard der vierten Generation. Eine Erweiterung heißt LTE-Advanced bzw. 4G, sie ist abwärtskompatibel zu LTE.}}
+
+\newglossaryentry{wlan}{
+	name={WLAN},
+    plural={WLANs},
+    description={Wireless Local Area Network (Drahtloses lokales Netzwerk) bezeichnet ein lokales Funknetz, wobei meistens ein Standard der IEEE-802.11-Familie gemeint ist. Für diese engere Bedeutung wird in manchen Ländern (z. B. USA, Großbritannien, Kanada, Niederlande, Spanien, Frankreich, Italien) weitläufig beziehungsweise auch synonym der Begriff Wi-Fi verwendet. Der Begriff wird häufig auch irreführend als Synonym für WLAN-Hotspots bzw. kabellosen Internetzugriff verwendet.}}
 
 \newglossaryentry{bluetooth}{
 	name={Bluetooth},
-    plural={LoRaWANs},
-    description={LoRaWAN (Long Range Wide Area Network) ist ein Low-Power-Wireless-Netzwerkprotokoll, das für die sichere bidirektionale Kommunikation im Internet der Dinge (IoT) entwickelt wurde. LoRaWAN basiert auf dem offenen Industrie-Standard LoRa und wird von der non-profit Organisation LoRa Alliance spezifiziert.}}
+    plural={Bluetooth},
+    description={Bluetooth ist ein in den 1990er Jahren durch die Bluetooth Special Interest Group (SIG) entwickelter Industriestandard gemäß IEEE 802.15.1 für die Datenübertragung zwischen Geräten über kurze Distanz per Funktechnik (WPAN). Dabei sind verbindungslose sowie verbindungsbehaftete Übertragungen von Punkt zu Punkt und Ad-hoc- oder Piconetze möglich. Der Name „Bluetooth“ leitet sich vom dänischen König Harald Blauzahn (englisch Harald Bluetooth) ab, der verfeindete Teile von Norwegen und Dänemark vereinte. Das Logo zeigt ein Monogramm der altnordischen Runen für H und B.}}
 
+\newglossaryentry{zigbee}{
+	name={ZigBee},
+    plural={ZigBees},
+    description={ZigBee ist eine Spezifikation für drahtlose Netzwerke mit geringem Datenaufkommen, wie z.B. Hausautomation, Sensornetzwerke und Lichttechnik. Der Schwerpunkt von ZigBee liegt in kurzreichweitigen Netzwerken (10 bis 100 Meter). Es sind aber auch Reichweiten von mehreren Kilometern möglich. Die ZigBee Spezifikation erweitert den IEEE 802.15.4-Standard um eine Netzwerk- und Anwendungsschicht. Die Spezifikation ist eine Entwicklung der ZigBee-Allianz, die Ende 2002 gegründet wurde.}}
+
+\newglossaryentry{sigfox}{
+	name={SIGFOX},
+    plural={SIGFOX},
+    description={SIGFOX ist ein Konzept für drahtlose Low Power WANs (LPWAN), das von der gleichnamigen französischen Firma entwickelt wurde. Ähnliche Konzepte sind nWave, Ingenu, das Thread-Protokoll, IEEE 802.11ah oder ZigBee 3.0. Das SigFox-Netzkonzept, das vollkommen unabhängig von vorhandenen Netzen arbeitet, zielt auf Anwendungen im Internet of Things (IoT) und Machine to Machine Communication (M2M).}}
 
 \newacronym{iot}{IoT}{Internet of Things}
+\newacronym{ieee}{IEEE}{Institute of Electronics and Electronics Engineering}
+\newacronym{m2m}{M2M}{Machine to Machine}
 \newacronym{ota}{OTA}{Over-the-Air}
-
-
+\newacronym{ble}{BLE}{Bluetooth Low Energy}

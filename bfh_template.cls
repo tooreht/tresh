@@ -180,3 +180,7 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage{lipsum}
+% landscape pages
+\usepackage{pdflscape}
+% tabular alternative
+\usepackage{tabulary}

@@ -7,9 +7,12 @@
 
 %---------------------------------------------------------------------------
 \documentclass{bfh_template}
+\usepackage[titletoc]{appendix}
 \usepackage{tikz}
 \usetikzlibrary{arrows,shadows}
 \usepackage{pgf-umlsd}
+\usepackage{listings}
+\include{lstset_js}
 
 %---------------------------------------------------------------------------
 %  Read title, version number and date of the paper from the file:
@@ -110,9 +113,14 @@
 %---------------------------------------------------------------------------
 % Appendix
 %---------------------------------------------------------------------------
-\appendix
-\settocdepth{section}
-\include{appendix/example.md}
+% \appendix
+% \settocdepth{section}
+% \include{appendix/example.md}
+
+\begin{appendices}
+\include{appendix/source}
+\include{appendix/setup_rpi}
+\end{appendices}
 
 
  % \includepdf[pages={-}]{../raspi/smoje/doc/latex/refman.pdf}

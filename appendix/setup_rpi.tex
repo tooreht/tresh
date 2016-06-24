@@ -1,0 +1,146 @@
+\section{Setup Raspberry Pi (RPI)}\label{setup-raspberry-pi-rpi}
+
+\subsection*{Installation}\label{installation}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Prepeare \texttt{cmdline.txt} of raspian image on sd card. Append the
+  following:
+
+\begin{verbatim}
+ip=192.168.2.2
+\end{verbatim}
+\item
+  (OSX) Internet Sharing WiFi to (Thunderbolt) Ethernet
+\item
+  Login to rpi (pw: raspberry)
+
+\begin{verbatim}
+ssh pi@192.168.2.2
+\end{verbatim}
+\item
+  Set locales: Choose \texttt{en\_US.UTF8} in
+
+\begin{verbatim}
+sudo dpkg-reconfigure locales
+\end{verbatim}
+\item
+  Set timezone: Choose \texttt{Zurich} in
+
+\begin{verbatim}
+dpkg-reconfigure tzdata
+\end{verbatim}
+\item
+  Install required debian packages
+
+\begin{verbatim}
+aptitude install autossh git vim mosh htop # Not nodejs npm!!!
+\end{verbatim}
+\item
+  Get latest Node.js debian package
+
+\begin{verbatim}
+wget http://node-arm.herokuapp.com/node_latest_armhf.deb
+\end{verbatim}
+\item
+  Install Node.js
+
+\begin{verbatim}
+sudo dpkg -i node_latest_armhf.deb`
+\end{verbatim}
+\item
+  Checkout source code
+
+\begin{verbatim}
+mkdir ~/src
+cd src/
+git clone <tresh_repo_url>
+\end{verbatim}
+\end{enumerate}
+
+\subsection*{Configuration}\label{configuration}
+
+\subsubsection*{DNS}\label{dns}
+
+Add following line to network interface in /etc/network/interfaces:
+
+\begin{verbatim}
+dns-nameservers 8.8.8.8 8.8.4.4
+\end{verbatim}
+
+\subsubsection*{SSH Reverse Tunnel}\label{ssh-reverse-tunnel}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Add autossh-tresh systemd service
+
+\begin{verbatim}
+pi@raspberrypi:~ $ vim /etc/systemd/system/autossh-tresh.service
+
+[Unit]
+Description=Autossh tresh: Maintain a ssh reverse tunnel to a control server
+# After=network.target
+After=network-online.target
+
+[Service]
+# User=autossh
+User=pi
+Group=pi
+# -p [PORT]
+# -l [user]
+# -M 0 --> no monitoring
+# -N Just open the connection and do nothing (not interactive)
+# LOCALPORT:IP_ON_EXAMPLE_COM:PORT_ON_EXAMPLE_COM
+# ExecStart=/usr/bin/autossh -M 0 -N -q -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3" -p 22 -l autossh remote.example.com -L 7474:127.0.0.1:7474 -i /home/autossh/.ssh/id_rsa
+TimeoutStartSec=3
+TimeoutStopSec=3
+ExecStart=/usr/bin/autossh -M 20000 -N -C -q -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3" -p 22 -l tooreht tjmp -R 22000:localhost:22 -i /home/pi/.ssh/id_rsa
+# ExecStart=/home/pi/scripts/autossh-tresh.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+\end{verbatim}
+\item
+  Enable service
+
+\begin{verbatim}
+systemctl enable autossh-tresh.service
+\end{verbatim}
+\end{enumerate}
+
+\subsubsection*{Detect Waspmote Gateaway USB via
+udev}\label{detect-waspmote-gateaway-usb-via-udev}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Add udev rule
+
+\begin{verbatim}
+pi@raspberrypi:~ $ vim  /etc/udev/rules.d/99-tresh.rules
+
+SUBSYSTEM=="tty", ACTION=="add", ATTRS{manufacturer}=="FTDI", ATTRS{product}=="FT232R USB UART",\
+  PROGRAM="/bin/systemd-escape -p --template=tresh-gateway@.service $env{DEVNAME} $env{ID_FS_LABEL}",\
+  ENV{SYSTEMD_WANTS}+="%c"
+\end{verbatim}
+\item
+  Add tresh-gateway@ systemd service
+
+\begin{verbatim}
+pi@raspberrypi:~ $ vim /etc/systemd/system/tresh-gateway@.service
+
+[Unit]
+Description=tresh siot gateway
+BindTo=%i.device
+After=%i.device
+After=rc-local.service
+
+[Service]
+Type=oneshot
+TimeoutStartSec=0
+ExecStart=/home/pi/scripts/tresh-gateway.sh
+\end{verbatim}
+\end{enumerate}

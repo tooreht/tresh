@@ -1,5 +1,5 @@
 \chapter{Der Use Case Tresh}
-\section{Entwicklung des Use Case}
+\section{Entwicklung des Use Case}\label{chapter:devOfUseCase}
 Durch den ersten Teil der Arbeit, der Analyse von Rahmenbedingungen, Anforderungen und technischen Möglichkeiten für Funktechnologien von \gls{iotk} hat sich gezeigt, dass \gls{lora} in praktisch allen Bereichen eine optimales Verhältnis zu allen Anforderungen hat. Nun ist als zweiter Teil der Arbeit das Ziel, anhand eines praktischen Use Cases diese Technologie effektiv einzusetzen und dadurch erste Erfahrungen damit zu sammeln. Mit der \gls{pshmthd} soll nun ein Bedürfnis gefunden werden, welches zu der \gls{lora}-Technologie passt. Dabei kommen als erstes natürlich die Use Cases aus dem Kapitel \ref{Anwendungsfälle für IoT} zur Evaluation. Es stellte sich aber heraus, dass die meisten Use Cases den Rahmen des Projekt 2 sprengen würden. Das grösste Problem vieler Use Cases sind die verschiedenen Abhängigkeiten. So wie in den Rahmenbedingungen in Kapitel \ref{Rahmenbedingungen für iot} beschrieben, hat ein intelligentes \gls{iot}-System schnell einmal Abhängigkeiten von mehreren Sensoren und Aktoren. Die Sensoren und Aktoren haben wiederum eine Menge Schnittstellen, welche zu verbinden sind. Wir mussten feststellen, dass unser Brainstorming noch nicht zum Erfolg führte. Doch wie so oft kommen die Ideen nicht beim Brainstorming, sondern dann wenn man nicht damit rechnet: im Frust. In unserem Fall Frust über einen vollen Mülleimer. Dies brachte den Lichtblitz: Der Füllstand von Mülleimern muss überwacht werden, damit die Eimer früh genug entleert werden können und Sauereien verhindert werden können.
 
 \begin{figure}[H]
@@ -13,8 +13,8 @@ Das Überwachen des Füllstandes kann ein einfacher \gls{iotk} übernehmen. Es e
 \section{Markt-Recherche}
 Nach der Entwicklung des Use Cases musste jetzt abgeklärt werden, ob dieser Use Case vielleicht bereits schon entdeckt und implementiert wurde. Eine Recherche im Internet nach smarten Trashes ergab, dass effektiv schon verschiedene Ideen auf dem Markt sind. Jedoch hat noch niemand ein solches Produkt entwickelt, welches die Messdaten danach auch via LoRa übermittelt. Hier ein Überblick über die gefundenen Artikel:
 \begin{itemize}  
-  \item GeniCan\autocite{market:genican} - der smarte Trash für die Küche scant den Barcode von Wegzuwerfenden Artikeln ein und lädt diese in eine Einkaufsliste. Eine Interessante Idee, misst jedoch nicht den Füllstand des Eimers.
-  \item In London hat eine Company Namens "Renew" im Jahre 2012 sogenannte "Thank Pods"\autocite{market:LondonBins} installiert. Diese bombensicheren Mülleimer sind mit einem grossen Flachbildschirm im Hochformat ausgerüstet und sollen damit Werbefläche vermieten können. 
+  \item GeniCan\autocite{market:genican} - der smarte Trash für die Küche scannt den Barcode von wegzuwerfenden Artikeln ein und lädt diese in eine Einkaufsliste. Eine Interessante Idee, misst jedoch nicht den Füllstand des Eimers.
+  \item In London hat ein Unternehmen namens \glqq{}Renew\grqq{} im Jahre 2012 sogenannte \glqq{}Thank Pods\grqq{}\autocite{market:LondonBins} installiert. Diese bombensicheren Mülleimer sind mit einem grossen Flachbildschirm im Hochformat ausgerüstet und sollen damit Werbefläche vermieten können. 
    \begin{figure}[H]
      \centering
         \includegraphics[scale=0.5]{pictures/London_Thank_Pod_Renew.jpg}

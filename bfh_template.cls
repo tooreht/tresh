@@ -89,7 +89,7 @@
 	hypertexnames = {true},               % no failures "same page(i)"
 	bookmarksopen = {true},               % opens the bar on the left side
 	bookmarksopenlevel = {0},             % depth of opened bookmarks
-	pdftitle = {Bachelor Thesis},	   	% PDF-property
+	pdftitle = {Projekt2 - Wittwer \& Zimmermann} % {Bachelor Thesis},	   	% PDF-property
 	pdfauthor = {brd3},        					  % PDF-property
 	pdfsubject = {LaTeX Template},        % PDF-property
 	linkcolor = {linkcolor},              % Color of Links

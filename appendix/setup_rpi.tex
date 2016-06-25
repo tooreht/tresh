@@ -47,7 +47,7 @@ wget http://node-arm.herokuapp.com/node_latest_armhf.deb
   Install Node.js
 
 \begin{verbatim}
-sudo dpkg -i node_latest_armhf.deb`
+sudo dpkg -i node_latest_armhf.deb
 \end{verbatim}
 \item
   Checkout source code
@@ -93,10 +93,16 @@ Group=pi
 # -M 0 --> no monitoring
 # -N Just open the connection and do nothing (not interactive)
 # LOCALPORT:IP_ON_EXAMPLE_COM:PORT_ON_EXAMPLE_COM
-# ExecStart=/usr/bin/autossh -M 0 -N -q -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3" -p 22 -l autossh remote.example.com -L 7474:127.0.0.1:7474 -i /home/autossh/.ssh/id_rsa
+# ExecStart=/usr/bin/autossh -M 0 -N -q \
+# -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3" \
+# -p 22 -l autossh remote.example.com \
+# -L 7474:127.0.0.1:7474 -i /home/autossh/.ssh/id_rsa
 TimeoutStartSec=3
 TimeoutStopSec=3
-ExecStart=/usr/bin/autossh -M 20000 -N -C -q -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3" -p 22 -l tooreht tjmp -R 22000:localhost:22 -i /home/pi/.ssh/id_rsa
+ExecStart=/usr/bin/autossh -M 20000 -N -C -q \
+-o "ServerAliveInterval 60" -o "ServerAliveCountMax 3" \
+-p 22 -l tooreht tjmp -R 22000:localhost:22 \
+-i /home/pi/.ssh/id_rsa
 # ExecStart=/home/pi/scripts/autossh-tresh.sh
 Restart=always
 
@@ -122,8 +128,11 @@ udev}\label{detect-waspmote-gateaway-usb-via-udev}
 \begin{verbatim}
 pi@raspberrypi:~ $ vim  /etc/udev/rules.d/99-tresh.rules
 
-SUBSYSTEM=="tty", ACTION=="add", ATTRS{manufacturer}=="FTDI", ATTRS{product}=="FT232R USB UART",\
-  PROGRAM="/bin/systemd-escape -p --template=tresh-gateway@.service $env{DEVNAME} $env{ID_FS_LABEL}",\
+SUBSYSTEM=="tty", ACTION=="add", \
+ATTRS{manufacturer}=="FTDI", \
+ATTRS{product}=="FT232R USB UART",\
+  PROGRAM="/bin/systemd-escape \
+  -p --template=tresh-gateway@.service $env{DEVNAME} $env{ID_FS_LABEL}",\
   ENV{SYSTEMD_WANTS}+="%c"
 \end{verbatim}
 \item
@@ -141,6 +150,117 @@ After=rc-local.service
 [Service]
 Type=oneshot
 TimeoutStartSec=0
-ExecStart=/home/pi/scripts/tresh-gateway.sh
+ExecStart=/home/pi/scripts/tresh-gateway.sh /%I
+# RemainAfterExit=yes
+\end{verbatim}
+\item
+  Prepeare adding bash script
+
+\begin{verbatim}
+mkdir -p /var/log/tresh
+touch /var/log/tresh/tresh-gateway.log
+\end{verbatim}
+\item
+  Add bash script tresh-gateway.sh
+
+\begin{verbatim}
+vim ~/scripts/tresh-gateway.sh
+
+#!/bin/bash
+LOG=/var/log/tresh/tresh-gateway.log
+cd /home/pi/src/tresh/gateway/tresh-siot-gateway
+DEVNAME=$1 node multi-sensor.js $1 | tee $LOG
+\end{verbatim}
+\item
+  Set permissions
+
+\begin{verbatim}
+chmod  u+x /home/pi/src/tresh/gateway/tresh-siot-gateway
+\end{verbatim}
+\item
+  Check USB insertion via systemd journal
+
+\begin{verbatim}
+journalctl -xn --follow
 \end{verbatim}
 \end{enumerate}
+
+\subsubsection*{Connect to WPA
+Enterprise}\label{connect-to-wpa-enterprise}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Add wpa configs
+
+\begin{verbatim}
+vim /etc/wpa_supplicant/wpa_supplicant.conf
+country=CH
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+# Locked BFH network
+network={
+    ssid="bfh"
+    key_mgmt=WPA-EAP IEEE8021X
+    eap=PEAP
+    auth_alg=OPEN
+    phase1="peaplabel=0"
+    phase2="auth=MSCHAPV2"
+    identity="insert-your-bfh-identity-here"
+    password="insert-your-password-here"
+    priority=100
+}
+
+# Open BFH network
+network={
+    ssid="public-bfh"
+    key_mgmt=NONE
+    priority=0
+}
+\end{verbatim}
+\item
+  Reboot
+
+\begin{verbatim}
+sudo reboot
+\end{verbatim}
+\item
+  Check status
+
+\begin{verbatim}
+sudo wpa_cli status
+
+Selected interface 'wlan0'
+bssid=b8:be:bf:b7:e3:f0
+freq=2412
+ssid=bfh
+id=0
+mode=station
+pairwise_cipher=CCMP
+group_cipher=CCMP
+key_mgmt=WPA2/IEEE 802.1X/EAP
+wpa_state=COMPLETED
+ip_address=147.87.46.112
+p2p_device_address=b8:27:eb:aa:73:e7
+address=b8:27:eb:aa:73:e7
+Supplicant PAE state=AUTHENTICATED
+suppPortStatus=Authorized
+EAP state=SUCCESS
+selectedMethod=25 (EAP-PEAP)
+EAP TLS cipher=ECDHE-RSA-AES256-SHA
+EAP-PEAPv0 Phase2 method=MSCHAPV2 uuid=edcd5979-ee8d-52ec-9c5e-5d3b6ed664c2
+\end{verbatim}
+\end{enumerate}
+
+\subsection*{Misc}\label{misc}
+
+\subsubsection*{Access RPI via ssh reverse
+tunnel}\label{access-rpi-via-ssh-reverse-tunnel}
+
+\begin{verbatim}
+1. eval `ssh-agent -s`
+2. ssh-add
+3. ssh -N -R 22000:localhost:22 tjmp or autossh -M 20000 -f -N tjmp -R 22000:localhost:22 -C
+ssh -p 22000 pi@localhost
+\end{verbatim}

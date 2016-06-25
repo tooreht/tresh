@@ -11,6 +11,11 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows,shadows}
 \usepackage{pgf-umlsd}
+
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+
 \usepackage{listings}
 \include{lstset_js}
 
@@ -56,7 +61,8 @@
 \include{chapters/5_rf_technology}
 \include{chapters/6_market_analysis}
 \include{chapters/7_prototype}
-\include{chapters/demo.md}
+\include{chapters/8_conclusion}
+% \include{chapters/demo.md}
 
 %---------------------------------------------------------------------------
 % Statement
@@ -118,8 +124,12 @@
 % \include{appendix/example.md}
 
 \begin{appendices}
+\includepdf[pages=-,landscape,addtotoc={
+     1,chapter,1,Application Requirements Map,p1
+}]{appendix/arm.pdf}\label{appendix:arm}
 \include{appendix/source}
 \include{appendix/setup_rpi}
+\include{appendix/lora_url_list}
 \end{appendices}
 
 

@@ -45,7 +45,7 @@ void setup()
   e = sx1272.setHeaderON();   // Select implicit (off) or explicit (on) header mode
   e = sx1272.setMode(10);   // Select mode (mode 10 is the faster)  
   e = sx1272.setCRC_ON();   // Select CRC on or off
-  e = sx1272.setPower('H');   // Select output power (Max, High or Low)
+  e = sx1272.setPower('M');   // Select output power (Max, High or Low)
   e = sx1272.setNodeAddress(2);   // Select the node address value: from 2 to 255
 
   delay(500);  

@@ -32,14 +32,19 @@
 \usepackage{textcomp}													% additional symbols
 \usepackage{ae}																% better resolution of Type1-Fonts
 \usepackage{fancyhdr}													% simple manipulation of header and footer
+\usepackage[table]{xcolor}													% package for colors with table option @tooreht
 \usepackage{etoolbox}													% color manipulation of header and footer
 \usepackage{graphicx}                      		% integration of images
 \usepackage{float}														% floating objects
 \usepackage{caption}													% for captions of figures and tables
 \usepackage{subcaption}
+\usepackage{colortbl}
 \usepackage{booktabs}													% package for nicer tables
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}					% command for stretching tables
 \usepackage{tocvsec2}													% provides means of controlling the sectional numbering
 \usepackage{tabularx}													% provides useful tables
+\usepackage{pbox}														% provides newlines in table cells
+
 \usepackage{pdfpages}
 \usepackage{placeins}
 \usepackage{fancyvrb}

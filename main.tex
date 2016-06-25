@@ -11,11 +11,6 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows,shadows}
 \usepackage{pgf-umlsd}
-
-\usepackage[table]{xcolor}
-\usepackage{booktabs}
-\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
-
 \usepackage{listings}
 \include{lstset_js}
 
@@ -124,9 +119,7 @@
 % \include{appendix/example.md}
 
 \begin{appendices}
-\includepdf[pages=-,landscape,addtotoc={
-     1,chapter,1,Application Requirements Map,p1
-}]{appendix/arm.pdf}\label{appendix:arm}
+\include{appendix/requirements}
 \include{appendix/source}
 \include{appendix/setup_rpi}
 \include{appendix/lora_url_list}

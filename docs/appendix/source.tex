@@ -1,0 +1,22 @@
+\chapter{Quellcode \gls{iotk}}
+
+\section{Waspmote}\label{appendix:waspmote}
+
+\textbf{Auslesen der Sensordaten und Übertragung via LoRa}
+\lstinputlisting[language=c,caption=tresh\_sensor\_node.pde]{source/tresh_sensor_node.pde}
+
+
+\chapter{Quellcode \gls{iotg}}
+
+\section{Waspmote Gateway}\label{appendix:waspmote-gateway}
+
+\textbf{Sensordaten aus dem \gls{lora}-Netzwerk auf dem Waspmote Gateway empfangen}
+\lstinputlisting[language=c,caption=tresh\_lora\_gateway.pde]{source/tresh_lora_gateway.pde}
+
+\section{Raspberry Pi}\label{appendix:raspberrypi}
+
+\textbf{Sensoren auf der \gls{siot} \gls{iotp} erstellen}
+\lstinputlisting[language=JavaScript,caption=create-sensors.js]{source/create-sensors.js}
+
+\textbf{Sensordaten des Waspmote Gateway an die \gls{siot} \gls{iotp} senden}
+\lstinputlisting[language=JavaScript,caption=multi-sensor.js]{source/multi-sensor.js}

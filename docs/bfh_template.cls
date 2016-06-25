@@ -32,14 +32,19 @@
 \usepackage{textcomp}													% additional symbols
 \usepackage{ae}																% better resolution of Type1-Fonts
 \usepackage{fancyhdr}													% simple manipulation of header and footer
+\usepackage[table]{xcolor}													% package for colors with table option @tooreht
 \usepackage{etoolbox}													% color manipulation of header and footer
 \usepackage{graphicx}                      		% integration of images
 \usepackage{float}														% floating objects
 \usepackage{caption}													% for captions of figures and tables
 \usepackage{subcaption}
+\usepackage{colortbl}
 \usepackage{booktabs}													% package for nicer tables
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}					% command for stretching tables
 \usepackage{tocvsec2}													% provides means of controlling the sectional numbering
 \usepackage{tabularx}													% provides useful tables
+\usepackage{pbox}														% provides newlines in table cells
+
 \usepackage{pdfpages}
 \usepackage{placeins}
 \usepackage{fancyvrb}
@@ -89,7 +94,7 @@
 	hypertexnames = {true},               % no failures "same page(i)"
 	bookmarksopen = {true},               % opens the bar on the left side
 	bookmarksopenlevel = {0},             % depth of opened bookmarks
-	pdftitle = {Bachelor Thesis},	   	% PDF-property
+	pdftitle = {Projekt2 - Wittwer \& Zimmermann} % {Bachelor Thesis},	   	% PDF-property
 	pdfauthor = {brd3},        					  % PDF-property
 	pdfsubject = {LaTeX Template},        % PDF-property
 	linkcolor = {linkcolor},              % Color of Links
@@ -130,11 +135,20 @@
 %  - Add this [ -s "%tm.ist" -t "%tm.glg" -o "%tm.gls" "%tm.glo" ] in the field "Argumente"
 %
 % for futher informations go to http://ewus.de/tipp-1029.html
+%
+% xindy usage from https://www.overleaf.com/5448147dbkcpd
 %---------------------------------------------------------------------------
-\usepackage[nonumberlist]{glossaries}
+\usepackage[xindy]{glossaries} 
+\input{references/glossary}
 \makeglossaries
-\include{references/glossary}
 %---------------------------------------------------------------------------
+
+%---------------------------------------------------------------------------
+% Bibliography (https://www.overleaf.com/5449343pfczgx)
+%---------------------------------------------------------------------------
+% for back reference in bibliography
+\usepackage[style=alphabetic,citestyle=authortitle,backend=biber,backref=true]{biblatex}
+\addbibresource{references/bibliography.bib}
 
 
 % Set up header and footer
@@ -162,8 +176,6 @@
 
 \pagenumbering{roman}
 
-\newcommand{\autocite}{\cite}
-
 \usepackage[para,online,flushleft]{threeparttable}
 
 % tooreht 
@@ -173,3 +185,7 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \usepackage{lipsum}
+% landscape pages
+\usepackage{pdflscape}
+% tabular alternative
+\usepackage{tabulary}

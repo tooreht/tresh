@@ -1,0 +1,32 @@
+\chapter{Rahmenbedingungen für \gls{iot}} \label{Rahmenbedingungen für iot}
+Die Use Cases aus den verschiedensten Branchen zeigen: In praktisch jeder Lebenssituation können Dinge automatisiert oder verbessert werden. So manchen Prozess, welchen wir heutzutage regelmässig wiederholen, kann automatisiert oder zumindest zeitlich optimiert werden, so dass er nur ausgeführt wird, wenn es wirklich nötig ist. Viele der beschriebenen Use Cases sind von mehreren Faktoren Abhängig. Der in Smart Home beschriebene Wecker benötigt beispielsweise folgende Sensoren und Aktoren:
+\begin{itemize}  
+  \item Zeit-Sensor (Real-Time Clock)
+  \item Wetter-Sensor (Licht-Sensor vor dem Fenster)
+  \item Schlafphasen-Sensor (Smartwatch)
+  \item Aufsteh-Sensor (Bodenplatten-Sensoren oder Smartwatch)
+  \item Rollladen-Aktor (elektrisch gesteuerte Rollladen)
+  \item Licht-Aktor (Smarte LEDs)
+  \item Musik-Aktor (Smarte Stereoanlage)
+\end{itemize}
+Dieser Wecker funktioniert erst, wenn er alle diese Sensoren auslesen und die Aktoren steuern kann. Natürlich könnte ein Wecker konstruiert werden, welcher all diese Informationen für sich erfasst und somit autonom funktioniert. Es existieren mittlerweile auch bereits alle Sensoren und Aktoren für sich. Allerdings wäre ein solch intelligenter Wecker als Komplettprodukt viel zu teuer und nicht erweiterbar. Deshalb ist es viel sinnvoller, wenn Sensoren ihre Daten an eine \gls{iotp} senden, welche die Sensordaten über standardisierte Schnittstellen empfängt und danach für Aktoren wieder über Schnittstellen bereitstellt. Erst mit einer solchen Plattform kann \gls{iot} sein Potential voll ausschöpfen. Durch das Teilen von Informationen können Sensoren und Aktoren voneinander profitieren.
+Somit muss nicht jedes System seine eigenen Sensoren und Aktoren zur Verfügung stellen. Redundanzen können verhindert werden. Dies ermöglicht, dass komplexe Systeme rasch und effizient entstehen können.  
+
+\section{\gls{iotk}}
+Heutzutage existieren bereits viele Sensoren und Aktoren. Beispielsweise haben die meisten aktuellen Smartphones Sensoren für Helligkeit, Temperatur, Beschleunigung Neigung, Position, Feuchtigkeit und Näherung. Leider befinden sich Smartphones zum grössten Teil in Hand- oder Hosentaschen, weshalb die Sensoren für die meisten Anwendungsfälle keine sinnvollen Daten messen. Weiter verwenden  Smartphones die Kostenpflichtigen 2/3/4G-Netzwerke. Dies ist finanziell nicht interessant und energetisch nicht sinnvoll, da diese Netzwerke nicht primär für einen effizienten Energieverbrauch entwickelt wurden. Aus diesen Gründen eignen sich Smartphones eher schlecht als \gls{iotk}. Damit ein \gls{iotk} sinnvoll eingesetzt werden kann, sollte er nur die nötigsten Sensoren haben und diese müssen sinnvoll positioniert sein, damit sie die Daten für den Use Case optimal ermitteln können. Statt also auf ein mit Sensoren vollgepacktes Gerät wie ein Smartphone aufzusetzen, macht es mehr Sinn neue Sensorknoten zu bauen, welche speziell auf einen Use Case abgestimmt sind.
+
+\section{\gls{iotp}}
+Wie bereits erwähnt brauchen die \gls{iotk} eine zentrale Stelle, welche die Sensordaten entgegennimmt und bei Bedarf speichern, aggregieren oder manipulieren kann. Das Unternehmen Appmodule entwickelt unter der Leitung von Andreas Danuser eine solche Plattform. 
+\subsection*{\gls{siot}}
+\gls{siot} bietet Schnittstellen via MQTT, WebSocket sowie REST um Sensordaten entgegenzunehmen. Zugleich bietet sie die Möglichkeit mit Node-Red, die Daten zu aggregieren, Events auszulösen oder Aktoren zu steuern. Weiter bietet sie eine Art Dashboard in welchem die Sensorwerte dargestellt werden können.
+
+\section{\gls{iotg}}
+Zum Verbinden von \gls{iotk} mit der \gls{iotp} wird schliesslich ein Gateway benötigt. Dieses empfängt die Funkdaten verschiedener Knoten und sendet sie an die Plattform. Weiter kann das Gateway die Daten mit zusätzlichen Informationen wie beispielsweise der Sensor-ID oder der Empfangsqualität des Empfangenen Pakets anreichern. Das Gateway ist somit einerseits ein Übersetzer von \gls{iot}-Kommunikation zu klassischer Netzwerk-Kommunikation, andererseits hat es auch noch eine Sensor-Funktion, da es den Zustand der Kommunikation und des \gls{iot}-Netzes an die Plattform meldet. 
+
+\begin{figure}[H]
+    \centering
+        \includegraphics[width=1.0\textwidth]{pictures/IoT_Conditions.png}
+    \caption{IoT Module}
+    \label{fig:IoT Module}
+\end{figure}
+
